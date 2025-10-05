@@ -175,8 +175,14 @@ nav {
 }
 
 /* Hero Section */
-/* Hero Section */
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+}
+
 .hero {
+    padding: 40px 0;
     padding-top: 180px;
     padding-bottom: 120px;
     min-height: 100vh;
@@ -187,25 +193,51 @@ nav {
 
 .hero-content {
     display: grid;
+    flex-wrap: wrap;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
     align-items: center;
+    justify-content: center;
     max-width: 1200px;
     margin: 0 auto;
 }
 
 .hero-text {
+    flex: 1;
+    min-width: 300px;
+    z-index: 1;
     animation: fadeInLeft 1s ease;
 }
 
-.hero h1 {
-    margin-bottom: 1.5rem;
+ .hero-text h3 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #fdbb2d;
+    font-weight: 500;
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    max-width: 600px;
+}
+
+
+.hero-text h1 {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+    background: linear-gradient(to right, #fff, #0099ffb6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
 .hero h3 {
     font-size: 1.8rem;
     margin-bottom: 2rem;
     color: var(--light-text);
+    font-weight: 500;
 }
 
 .hero p {
@@ -216,20 +248,19 @@ nav {
 .hero-btns {
     display: flex;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
 /* Profile Image Styles */
-.hero-image {
-    display: flex;
-    justify-content: center;
-    animation: fadeInRight 1s ease;
-}
 
-.profile-container {
-    position: relative;
-    width: 350px;
-    height: 350px;
-}
+        .hero-image {
+            flex: 0 0 450px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
 
 /* Replace .profile-image with this when you have your actual photo */
 
@@ -270,7 +301,6 @@ nav {
     bottom: -10px;
     border: 2px solid var(--accent-color);
     border-radius: 50%;
-    animation: rotate 20s linear infinite;
     z-index: 1;
 }
 
@@ -293,6 +323,7 @@ nav {
     z-index: 0;
     animation: rotate 15s linear infinite;
 }
+
 
 
 
