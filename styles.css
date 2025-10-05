@@ -176,11 +176,6 @@ nav {
 
 /* Hero Section */
 
-.container {
-    max-width: 1200px;
-    width: 100%;
-}
-
 .hero {
     padding: 40px 0;
     padding-top: 180px;
@@ -212,7 +207,7 @@ nav {
  .hero-text h3 {
     font-size: 1.8rem;
     margin-bottom: 20px;
-    color: #fdbb2d;
+    color: #1100ff;
     font-weight: 500;
 }
 
@@ -233,12 +228,7 @@ nav {
     color: transparent;
 }
 
-.hero h3 {
-    font-size: 1.8rem;
-    margin-bottom: 2rem;
-    color: var(--light-text);
-    font-weight: 500;
-}
+
 
 .hero p {
     font-size: 1.25rem;
@@ -262,36 +252,7 @@ nav {
             z-index: 1;
         }
 
-/* Replace .profile-image with this when you have your actual photo */
 
-.profile-image {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background-image: url('Pictures/Profile-Picture.png');
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    z-index: 2;
-    border: 4px solid var(--primary-color);
-    box-shadow: 0 0 50px rgba(108, 99, 255, 0.3);
-}
-
-.image-placeholder {
-    text-align: center;
-    color: var(--light-text);
-}
-
-.image-placeholder i {
-    font-size: 4rem;
-    margin-bottom: 1rem;
-    display: block;
-    color: var(--primary-color);
-}
-
-.image-placeholder span {
-    font-size: 1rem;
-}
 
 .profile-frame {
     position: absolute;
@@ -322,6 +283,10 @@ nav {
     opacity: 0.3;
     z-index: 0;
     animation: rotate 15s linear infinite;
+}
+
+.profile-container:hover {
+    transform: scale(1.05);
 }
 
 
