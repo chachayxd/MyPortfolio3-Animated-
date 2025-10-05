@@ -140,5 +140,20 @@ canvas.addEventListener('mouseleave', () => {
 });
 
 // Initialize
-createDots(80);
+createDots(100);
 animate();
+
+// Hero Section for Profile Picture (Profile image hover effect)
+document.addEventListener('DOMContentLoaded', function() {
+    const profileContainer = document.querySelector('.profile-container');
+    
+    if (profileContainer) {
+        profileContainer.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.05)';
+        });
+        
+        profileContainer.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+        });
+    }
+});
