@@ -143,4 +143,47 @@ canvas.addEventListener('mouseleave', () => {
 createDots(100);
 animate();
 
+// Mobile Menu Functionality
+const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+const navLinks = document.querySelector('.nav-links');
+const menuIcon = mobileMenuBtn.querySelector('i');
 
+mobileMenuBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    // Toggle icon between bars and times (close)
+    if (navLinks.classList.contains('active')) {
+        menuIcon.classList.remove('fa-bars');
+        menuIcon.classList.add('fa-times');
+    } else {
+        menuIcon.classList.remove('fa-times');
+        menuIcon.classList.add('fa-bars');
+    }
+});
+
+// Close mobile menu when a link is clicked
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        menuIcon.classList.remove('fa-times');
+        menuIcon.classList.add('fa-bars');
+    });
+});
+
+// Scroll Fade-In Animation
+const sections = document.querySelectorAll('.fade-in-section');
+
+const sectionObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+        }
+    });
+}, {
+    root: null, // observes intersections relative to the viewport
+    threshold: 0.1 // trigger when 10% of the element is visible
+});
+
+sections.forEach(section => {
+    sectionObserver.observe(section);
+});
