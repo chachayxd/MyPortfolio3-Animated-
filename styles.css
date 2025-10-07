@@ -815,16 +815,16 @@ footer {
         font-size: 2rem;
     }
 
-    .nav-links {
-        display: none;
-        position: absolute;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        background-color: rgba(0, 0, 0, 0.95);
-        flex-direction: column;
-        padding: 20px;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+.nav-links {
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
     }
 
     .nav-links a::before {
@@ -838,6 +838,10 @@ footer {
     transition: all 0.3s ease;
     transform: translateX(-50%);
     }
+    .nav-links a:hover::before,
+    .nav-links a.active::before {
+    width: 80%;
+}
     .nav-links.active {
         display: flex;
     }
