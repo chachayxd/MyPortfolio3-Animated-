@@ -324,16 +324,20 @@ nav {
     justify-content: center;
     align-items: center;
     position: relative;
+    overflow: visible; /* Important: allows glow to be visible */
     z-index: 1;
 }
 
 .profile-container {
+    position: relative;
     width: 400px;
     height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 auto;
+    /* Contain all child elements including glow */
+    overflow: visible;
 }
 
 .profile-image-wrapper {
@@ -349,59 +353,164 @@ nav {
     mask-composite: subtract;
 }
 
+/* Image container - properly layered */
+.profile-image-container {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 3;
+    border: 3px solid transparent;
+    background: linear-gradient(45deg, #2563eb, #3b82f6, #60a5fa) border-box;
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) padding-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+
 .profile-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
     transition: transform 0.3s ease;
+    position: relative;
+    z-index: 1;
 }
 
 .profile-image:hover {
     transform: scale(1.05);
 }
 
-.profile-frame {
+/* Shine effect - fixed positioning */
+.profile-shine {
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    border: 3px solid transparent;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        125deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.1) 45%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0.1) 55%,
+        transparent 100%
+    );
     border-radius: 50%;
-    background: linear-gradient(45deg, var(--primary-color), var(--accent-color)) border-box;
-    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-    mask-composite: subtract;
-    z-index: 1;
+    animation: shineRotate 8s linear infinite;
+    z-index: 2;
+    pointer-events: none;
+}
+
+@keyframes shineRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Profile frame - rotating border */
+.profile-frame {
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #2563eb, #3b82f6, #60a5fa, #2563eb) border-box;
+    background-size: 400% 400%;
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) padding-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: rotate 8s linear infinite, gradientShift 4s ease-in-out infinite;
+    z-index: 4;
+    pointer-events: none;
 }
 
 @keyframes rotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
-.profile-glow {
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+
+/* Container for glow effects */
+.profile-glow-container {
     position: absolute;
-    top: -20px;
-    left: -20px;
-    right: -20px;
-    bottom: -20px;
-    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 340px; /* Slightly larger than image */
+    height: 340px;
     border-radius: 50%;
-    filter: blur(30px);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Outer glow - contained within profile container */
+.profile-outer-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #2563eb, #3b82f6, #60a5fa);
+    border-radius: 50%;
+    filter: blur(25px);
+    opacity: 0.4;
+    animation: glowPulse 4s ease-in-out infinite;
+    z-index: 1;
+}
+
+/* Inner glow - more subtle */
+.profile-inner-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 90%;
+    background: linear-gradient(135deg, #3b82f6, #60a5fa, #93c5fd);
+    border-radius: 50%;
+    filter: blur(15px);
     opacity: 0.3;
-    animation: pulse 4s ease-in-out infinite;
-    z-index: 0;
+    animation: glowPulse 3s ease-in-out infinite reverse;
+    z-index: 2;
 }
 
-@keyframes pulse {
-    0%, 100% { opacity: 0.3; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(1.05); }
+@keyframes glowPulse {
+    0%, 100% {
+        opacity: 0.3;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1.05);
+    }
 }
 
-/* Floating Elements - Centered Version */
-
-
+/* Floating Elements - Fixed Positioning */
 .floating-elements {
     position: absolute;
     top: 0;
@@ -409,14 +518,14 @@ nav {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 10;
+    z-index: 5;
 }
 
 .floating-element {
     position: absolute;
     width: 60px;
     height: 60px;
-    background: rgba(17, 24, 39, 0.9);
+    background: rgba(17, 24, 39, 0.95);
     border-radius: 16px;
     display: flex;
     align-items: center;
@@ -425,67 +534,57 @@ nav {
     color: var(--primary-color);
     border: 2px solid var(--primary-color);
     box-shadow: 
-        0 8px 25px rgba(37, 99, 235, 0.3),
+        0 8px 25px rgba(37, 99, 235, 0.4),
         inset 0 2px 10px rgba(255, 255, 255, 0.1);
     animation: float 6s ease-in-out infinite;
     pointer-events: none;
     backdrop-filter: blur(10px);
-    
-    /* Center the icons properly */
     transform: translate(-50%, -50%);
+    z-index: 5;
 }
 
-/* Position around the circle - FIXED */
+/* Floating element positions - properly contained */
 .floating-element:nth-child(1) { 
-    top: 20%; 
-    left: 20%; 
+    top: 15%; 
+    left: 15%; 
     animation-delay: 0s; 
     color: #f7df1e;
     border-color: #f7df1e;
 }
 
 .floating-element:nth-child(2) { 
-    top: 20%; 
-    left: 80%; 
+    top: 15%; 
+    left: 85%; 
     animation-delay: 1.5s; 
     color: #61dafb;
     border-color: #61dafb;
 }
 
 .floating-element:nth-child(3) { 
-    top: 80%; 
-    left: 20%; 
+    top: 85%; 
+    left: 15%; 
     animation-delay: 3s; 
     color: #68a063;
     border-color: #68a063;
 }
 
 .floating-element:nth-child(4) { 
-    top: 80%; 
-    left: 80%; 
+    top: 85%; 
+    left: 85%; 
     animation-delay: 4.5s; 
     color: #00758f;
     border-color: #00758f;
 }
 
-/* Alternative: Circular positioning around profile */
-.floating-element:nth-child(1) { top: 25%; left: 25%; }
-.floating-element:nth-child(2) { top: 25%; left: 75%; }
-.floating-element:nth-child(3) { top: 75%; left: 25%; }
-.floating-element:nth-child(4) { top: 75%; left: 75%; }
-
-/* Enhanced floating animation */
 @keyframes float {
     0%, 100% { 
-        transform: translate(-50%, -50%) scale(1);
-        box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
     }
     33% { 
-        transform: translate(-50%, -60%) scale(1.05);
-        box-shadow: 0 15px 35px rgba(37, 99, 235, 0.4);
+        transform: translate(-50%, -60%) scale(1.05) rotate(5deg);
     }
     66% { 
-        transform: translate(-50%, -55%) scale(1.02);
+        transform: translate(-50%, -55%) scale(1.02) rotate(-3deg);
     }
 }
 
@@ -499,12 +598,55 @@ nav {
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (max-width: 968px) {
+    .profile-container {
+        width: 320px;
+        height: 320px;
+    }
+    
+    .profile-glow-container {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .profile-image-container {
+        width: 260px;
+        height: 260px;
+    }
+    
     .floating-element {
         width: 50px;
         height: 50px;
         font-size: 1.5rem;
     }
+}
+
+@media (max-width: 768px) {
+    .profile-container {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .profile-glow-container {
+        width: 240px;
+        height: 240px;
+    }
+    
+    .profile-image-container {
+        width: 220px;
+        height: 220px;
+    }
+    
+    .floating-element {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+    }
+    
+    .floating-element:nth-child(1) { top: 10%; left: 10%; }
+    .floating-element:nth-child(2) { top: 10%; left: 90%; }
+    .floating-element:nth-child(3) { top: 90%; left: 10%; }
+    .floating-element:nth-child(4) { top: 90%; left: 90%; }
 }
 
 
