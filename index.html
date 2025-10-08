@@ -17,7 +17,7 @@
     <header>
         <div class="container">
             <nav>
-                <a href="#" class="logo">Joshua Babelonia</a>
+                <a href="#home" class="logo">Joshua Babelonia</a>
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
@@ -27,7 +27,7 @@
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
-                <button class="mobile-menu-btn">
+                <button class="mobile-menu-btn" aria-label="Toggle navigation menu">
                     <i class="fas fa-bars"></i>
                 </button>
             </nav>
@@ -249,7 +249,7 @@
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-img">
-                    <img src="Projects\carwash-picture.jpg" alt="GMC Shop App">
+                    <img src="Projects/carwash-picture.jpg" alt="GMC Shop App">
                     </div>
                     <div class="project-content">
                         <h3>GMC Shop: Car Wash Management System</h3>
@@ -267,7 +267,7 @@
                 </div>
                 <div class="project-card">
                     <div class="project-img">
-                       <img src="Projects\2dgame-picture.jpg" alt="Jump Master Game">
+                       <img src="Projects/2dgame-picture.jpg" alt="Jump Master Game">
                     </div>
                     <div class="project-content">
                         <h3>Jump Master: 2D Adventure Arcade Game</h3>
@@ -284,7 +284,7 @@
                 </div>
                 <div class="project-card">
                     <div class="project-img">
-                       <img src="Projects\dolexplain-picture.jpg" alt="DOLE Xplain Series">
+                       <img src="Projects/dolexplain-picture.jpg" alt="DOLE Xplain Series">
                     </div>
                     <div class="project-content">
                         <h3>DOLE Media & Design Projects</h3>
@@ -336,7 +336,7 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <a href="#" class="footer-logo">Joshua Babelonia</a>
+                <a href="#home" class="footer-logo">Joshua Babelonia</a>
                 <div class="footer-links">
                     <a href="#home">Home</a>
                     <a href="#about">About</a>
@@ -350,6 +350,27 @@
             </div>
         </div>
     </footer>
+
+       <!-- (NEW) Scroll to Top Button -->
+    <button id="scrollToTopBtn" title="Go to top" aria-label="Scroll to top of the page">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+
+        <!-- (NEW) Project Modal --> 
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <img id="modalImg" src="" alt="Project Image">
+            <h3 id="modalTitle"></h3>
+            <div id="modalTech" class="project-tech"></div>
+            <p id="modalDetails"></p>
+            <div class="modal-links">
+                <a id="modalLiveLink" href="#" class="btn" target="_blank" rel="noopener noreferrer">Live Demo <i class="fas fa-external-link-alt"></i></a>
+                <a id="modalRepoLink" href="#" class="btn btn-outline" target="_blank" rel="noopener noreferrer">GitHub Repo <i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </div>    
 
     <script src="script.js"></script>
 </body>
