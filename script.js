@@ -271,3 +271,98 @@ window.addEventListener('click', (event) => {
         closeModal();
     }
 });
+
+// Add this to your existing script.js for enhanced profile interactions
+
+class ProfileEffects {
+    constructor() {
+        this.profileContainer = document.querySelector('.profile-container');
+        this.profileImage = document.querySelector('.profile-image');
+        this.init();
+    }
+    
+    init() {
+        this.setupHoverEffects();
+        this.setupClickEffects();
+    }
+    
+    setupHoverEffects() {
+        if (this.profileContainer) {
+            this.profileContainer.addEventListener('mouseenter', () => {
+                this.enhanceGlow();
+            });
+            
+            this.profileContainer.addEventListener('mouseleave', () => {
+                this.reduceGlow();
+            });
+        }
+    }
+    
+    setupClickEffects() {
+        if (this.profileImage) {
+            this.profileImage.addEventListener('click', () => {
+                this.createRippleEffect();
+            });
+        }
+    }
+    
+    enhanceGlow() {
+        const outerGlow = document.querySelector('.profile-outer-glow');
+        const innerGlow = document.querySelector('.profile-inner-glow');
+        
+        if (outerGlow) outerGlow.style.opacity = '0.6';
+        if (innerGlow) innerGlow.style.opacity = '0.5';
+    }
+    
+    reduceGlow() {
+        const outerGlow = document.querySelector('.profile-outer-glow');
+        const innerGlow = document.querySelector('.profile-inner-glow');
+        
+        if (outerGlow) outerGlow.style.opacity = '0.4';
+        if (innerGlow) innerGlow.style.opacity = '0.3';
+    }
+    
+    createRippleEffect() {
+        const ripple = document.createElement('div');
+        ripple.style.cssText = `
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            border: 2px solid rgba(59, 130, 246, 0.8);
+            border-radius: 50%;
+            animation: rippleExpand 1s ease-out forwards;
+            pointer-events: none;
+            z-index: 10;
+        `;
+        
+        this.profileContainer.appendChild(ripple);
+        
+        setTimeout(() => {
+            ripple.remove();
+        }, 1000);
+    }
+}
+
+// Add ripple animation to CSS
+const rippleStyle = document.createElement('style');
+rippleStyle.textContent = `
+    @keyframes rippleExpand {
+        0% {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+        100% {
+            transform: translate(-50%, -50%) scale(1.2);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(rippleStyle);
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    new ProfileEffects();
+});
