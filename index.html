@@ -49,33 +49,32 @@
                 </div>
                 <div class="hero-image">
                     <div class="profile-container">
-                            <div class="profile-glow-container">
+                        <div class="profile-glow-container">
                             <div class="profile-outer-glow"></div>
                             <div class="profile-inner-glow"></div>
-                    </div>
-                        <div class="profile-image-wrapper"></div>
-                         <img src="Pictures/Profile-Picture.png" alt="Joshua Babelonia" class="profile-image">
                         </div>
-     <div class="profile-shine"></div>
-    <div class="profile-frame"></div>
-    <div class="profile-glow"></div>
-    
-    <!-- Floating Elements -->
-    <div class="floating-elements">
-        <div class="floating-element element-1">
-            <i class="fab fa-js"></i>
-        </div>
-        <div class="floating-element element-2">
-            <i class="fab fa-react"></i>
-        </div>
-        <div class="floating-element element-3">
-            <i class="fab fa-node-js"></i>
-        </div>
-        <div class="floating-element element-4">
-            <i class="fas fa-database"></i>
-        </div>
-    </div>
-</div>
+                        <div class="profile-image-wrapper">
+                            <img src="Pictures/Profile-Picture.png" alt="Joshua Babelonia" class="profile-image">
+                            <div class="profile-shine"></div>
+                            <div class="profile-frame"></div>
+                        </div>
+                        
+                        <!-- Floating Elements -->
+                        <div class="floating-elements">
+                            <div class="floating-element element-1">
+                                <i class="fab fa-js"></i>
+                            </div>
+                            <div class="floating-element element-2">
+                                <i class="fab fa-react"></i>
+                            </div>
+                            <div class="floating-element element-3">
+                                <i class="fab fa-node-js"></i>
+                            </div>
+                            <div class="floating-element element-4">
+                                <i class="fas fa-database"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -251,25 +250,32 @@
         <div class="container">
             <h2>Projects</h2>
             <div class="projects-grid">
-                <div class="project-card">
+                <div class="project-card" data-title="GMC Shop: Car Wash Management System" 
+                     data-img="Projects/carwash-picture.jpg" 
+                     data-details="An Android Mobile-Based Application for a Car Wash Management System - Capstone Project"
+                     data-tech="Android,Figma,Firebase,UI/UX Design"
+                     data-live-link="#"
+                     data-repo-link="#">
                     <div class="project-img">
-                    <img src="Projects/carwash-picture.jpg" alt="GMC Shop App">
+                        <img src="Projects/carwash-picture.jpg" alt="GMC Shop App">
                     </div>
                     <div class="project-content">
                         <h3>GMC Shop: Car Wash Management System</h3>
                         <p>An Android Mobile-Based Application for a Car Wash Management System - Capstone Project</p>
                         <div class="project-tech">
-                            <span class="tech-tag">Android</span>
-                            <span class="tech-tag">Figma</span>
-                            <span class="tech-tag">Firebase</span>
-                            <span class="tech-tag">UI/UX Design</span>
+                            <!-- Will be populated by JavaScript -->
                         </div>
                         <div class="project-links">
-                            <a href="#" class="btn">View Details</a>
+                            <button class="btn view-details-btn">View Details</button>
                         </div>
                     </div>
                 </div>
-                <div class="project-card">
+                <div class="project-card" data-title="Jump Master: 2D Adventure Arcade Game" 
+                     data-img="Projects/2dgame-picture.jpg" 
+                     data-details="Software Engineering Project - Designed key visual elements and user interface screens"
+                     data-tech="Game Development,UI Design,Graphic Design"
+                     data-live-link="#"
+                     data-repo-link="#">
                     <div class="project-img">
                        <img src="Projects/2dgame-picture.jpg" alt="Jump Master Game">
                     </div>
@@ -277,16 +283,19 @@
                         <h3>Jump Master: 2D Adventure Arcade Game</h3>
                         <p>Software Engineering Project - Designed key visual elements and user interface screens</p>
                         <div class="project-tech">
-                            <span class="tech-tag">Game Development</span>
-                            <span class="tech-tag">UI Design</span>
-                            <span class="tech-tag">Graphic Design</span>
+                            <!-- Will be populated by JavaScript -->
                         </div>
                         <div class="project-links">
-                            <a href="#" class="btn">View Details</a>
+                            <button class="btn view-details-btn">View Details</button>
                         </div>
                     </div>
                 </div>
-                <div class="project-card">
+                <div class="project-card" data-title="DOLE Media & Design Projects" 
+                     data-img="Projects/dolexplain-picture.jpg" 
+                     data-details="Created social media graphics, edited video content ('DOLE Explain' series), and designed infographics/posters for public awareness campaigns"
+                     data-tech="Adobe Photoshop,Canva,Video Editing,Graphic Design"
+                     data-live-link="#"
+                     data-repo-link="#">
                     <div class="project-img">
                        <img src="Projects/dolexplain-picture.jpg" alt="DOLE Xplain Series">
                     </div>
@@ -294,13 +303,10 @@
                         <h3>DOLE Media & Design Projects</h3>
                         <p>Created social media graphics, edited video content ("DOLE Explain" series), and designed infographics/posters for public awareness campaigns</p>
                         <div class="project-tech">
-                            <span class="tech-tag">Adobe Photoshop</span>
-                            <span class="tech-tag">Canva</span>
-                            <span class="tech-tag">Video Editing</span>
-                            <span class="tech-tag">Graphic Design</span>
+                            <!-- Will be populated by JavaScript -->
                         </div>
                         <div class="project-links">
-                            <a href="#" class="btn">View Details</a>
+                            <button class="btn view-details-btn">View Details</button>
                         </div>
                     </div>
                 </div>
@@ -312,7 +318,7 @@
     <section id="contact" class="contact fade-in-section">
         <div class="container">
             <div class="contact-content">
-                <h2>Get In Touch </h2>
+                <h2>Get In Touch</h2>
                 <p>I'm always interested in new opportunities and collaborations. Whether you have a project in mind or just want to say hello, feel free to reach out!</p>
                 <div class="contact-buttons">
                     <a href="mailto:joshuababelonia20@gmail.com" class="btn">Send Email <i class="fas fa-paper-plane"></i></a>
@@ -355,13 +361,12 @@
         </div>
     </footer>
 
-       <!-- (NEW) Scroll to Top Button -->
+    <!-- Scroll to Top Button -->
     <button id="scrollToTopBtn" title="Go to top" aria-label="Scroll to top of the page">
         <i class="fas fa-arrow-up"></i>
     </button>
 
-
-        <!-- (NEW) Project Modal --> 
+    <!-- Project Modal -->
     <div id="projectModal" class="modal">
         <div class="modal-content">
             <span class="close-btn">&times;</span>
