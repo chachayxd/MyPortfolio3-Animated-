@@ -1,6 +1,7 @@
 // Canvas setup
 const canvas = document.getElementById('dotsCanvas');
 const ctx = canvas.getContext('2d');
+let animationFrameId;
 
 // Set canvas to full window size
 function resizeCanvas() {
@@ -11,7 +12,7 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
-// Dot class
+// --- Dot Animation ---
 class Dot {
     constructor() {
         this.x = Math.random() * canvas.width;
@@ -125,7 +126,7 @@ function animate() {
     // Draw connecting lines
     drawLines();
     
-    requestAnimationFrame(animate);
+    animationFrameId = requestAnimationFrame(animate);
 }
 
 // Mouse event listeners
@@ -139,11 +140,20 @@ canvas.addEventListener('mouseleave', () => {
     mouse.active = false;
 });
 
+// Performance: Pause animation when tab is not visible
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+        cancelAnimationFrame(animationFrameId);
+    } else {
+        animate();
+    }
+});
+
 // Initialize
 createDots(100);
 animate();
 
-// Mobile Menu Functionality
+// --- Mobile Menu ---
 const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
 const navLinks = document.querySelector('.nav-links');
 const menuIcon = mobileMenuBtn.querySelector('i');
@@ -188,3 +198,76 @@ sections.forEach(section => {
     sectionObserver.observe(section);
 });
 
+
+// --- Scroll to Top Button ---
+const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+window.onscroll = function() {
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        scrollToTopBtn.classList.add('visible');
+    } else {
+        scrollToTopBtn.classList.remove('visible');
+    }
+};
+
+scrollToTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// --- Project Modals ---
+const modal = document.getElementById('projectModal');
+const modalImg = document.getElementById('modalImg');
+const modalTitle = document.getElementById('modalTitle');
+const modalTech = document.getElementById('modalTech');
+const modalDetails = document.getElementById('modalDetails');
+const modalLiveLink = document.getElementById('modalLiveLink');
+const modalRepoLink = document.getElementById('modalRepoLink');
+const closeBtn = document.querySelector('.close-btn');
+
+document.querySelectorAll('.view-details-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        const card = button.closest('.project-card');
+        
+        modalTitle.textContent = card.dataset.title;
+        modalImg.src = card.dataset.img;
+        modalImg.alt = `Image of ${card.dataset.title}`;
+        modalDetails.textContent = card.dataset.details;
+        modalLiveLink.href = card.dataset.liveLink;
+        modalRepoLink.href = card.dataset.repoLink;
+
+        // Populate tech tags
+        modalTech.innerHTML = '';
+        const techs = card.dataset.tech.split(',');
+        techs.forEach(tech => {
+            const span = document.createElement('span');
+            span.className = 'tech-tag';
+            span.textContent = tech;
+            modalTech.appendChild(span);
+        });
+
+        modal.style.display = 'block';
+    });
+});
+
+// Populate tech tags on the main page cards
+document.querySelectorAll('.project-card').forEach(card => {
+    const techContainer = card.querySelector('.project-tech');
+    const techs = card.dataset.tech.split(',');
+    techs.forEach(tech => {
+        const span = document.createElement('span');
+        span.className = 'tech-tag';
+        span.textContent = tech;
+        techContainer.appendChild(span);
+    });
+});
+
+function closeModal() {
+    modal.style.display = 'none';
+}
+
+closeBtn.addEventListener('click', closeModal);
+window.addEventListener('click', (event) => {
+    if (event.target == modal) {
+        closeModal();
+    }
+});
