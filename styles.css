@@ -328,7 +328,6 @@ nav {
 }
 
 .profile-container {
-    position: center;
     width: 400px;
     height: 400px;
     display: flex;
@@ -390,7 +389,6 @@ nav {
     background: linear-gradient(45deg, var(--primary-color), var(--accent-color)) border-box;
     mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
     mask-composite: subtract;
-    animation: rotate 10s linear infinite;
     z-index: 1;
 }
 
@@ -807,11 +805,14 @@ nav {
   background-color: #0b1221;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .project-card:hover {
     transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
 }
 
 .project-img {
@@ -837,11 +838,15 @@ nav {
 /* Optional — keep equal heights visually */
 .project-card > *:not(.project-img) {
   flex-grow: 1;
+  object-fit: cover;
+  transition: transform 0.3s ease;
 }
-
 
 .project-content {
     padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .project-tech {
@@ -862,10 +867,107 @@ nav {
 .project-links {
     display: flex;
     gap: 15px;
-    margin-top: 20px;
+    margin-top: auto; /* Pushes button to the bottom */
+    padding-top: 15px;
 }
 
 /* Contact Section */
+
+/* Scroll to Top Button */
+#scrollToTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 999;
+    border: none;
+    outline: none;
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    padding: 0;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+    box-shadow: var(--shadow);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+    transform: translateY(20px);
+}
+
+#scrollToTopBtn.visible {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#scrollToTopBtn:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Project Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background-color: var(--light-bg);
+    margin: 10% auto;
+    padding: 30px;
+    border: 1px solid var(--border-color);
+    width: 90%;
+    max-width: 700px;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    animation: slideIn 0.4s ease;
+    margin: 20% auto;
+}
+
+.close-btn {
+    color: #aaa;
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: white;
+}
+
+#modalImg {
+    width: 100%;
+    height: auto;
+    max-height: 350px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.modal-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+@keyframes slideIn { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
 
 .contact-buttons {
   display: flex;
